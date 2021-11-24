@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+
+       var instructionDict = {
+           "MATE": ["Pick and place the green E on the rightmost quarter", 
+                    "Pick and place the blue T on the left of the green E", 
+                    "Pick and place the red A on the left of the blue T", 
+                    "Pick and place the yellow M on the left of the red A"],
+           "TAME": ["Pick and place the red E on the rightmost quarter", 
+                    "Pick and place the blue M on the left of the red E", 
+                    "Pick and place the yellow A on the left of the blue M", 
+                    "Pick and place the cyan T on the left of the yellow A"],
+            "GATE": ["Pick and place the red G on the leftmost quarter", 
+                    "Pick and place the cyan A on the right of the red G", 
+                    "Pick and place the green T on the right of the cyan A", 
+                    "Pick and place the purple E on the right of the green T"],
+            "GAME": ["Pick and place the blue A on the second quarter from left", 
+                    "Pick and place the purple G on the left of the blue A", 
+                    "Pick and place the yellow M on the right of the blue A", 
+                    "Pick and place the cyan E on the right of the yellow M"],
+            "TEAM": ["Pick and place the red M on the rightmost quarter", 
+                    "Pick and place the cyan A on the left of the red M", 
+                    "Pick and place the yellow E on the left of the cyan A", 
+                    "Pick and place the purple T on the left of the yellow E"],
+            "MEAT": ["Pick and place the red M on the leftmost quarter", 
+                    "Pick and place the green E on the right of the red M", 
+                    "Pick and place the purple A on the right of the green E", 
+                    "Pick and place the blue T on the right of the purple A"],
+            "META": ["Pick and place the yellow M on the leftmost quarter", 
+                    "Pick and place the purple E on the right of the yellow M", 
+                    "Pick and place the red T on the right of the purple E", 
+                    "Pick and place the green A on the right of the red T"],
+            "MEGA": ["Pick and place the red M on the leftmost quarter", 
+                    "Pick and place the blue E on the right of the red M", 
+                    "Pick and place the purple G on the right of the blue E", 
+                    "Pick and place the yellow A on the right of the purple G"],
+            "TIDI": ["Pick and place the purple I on the rightmost quarter", 
+                    "Pick and place the blue D on the left of the purple I", 
+                    "Pick and place the yellow I on the left of the blue D", 
+                    "Pick and place the red T on the left of the yellow I"]
+       }
+       
+       function setImageSeePP(select){
+            var image1 = document.getElementsByName("image-swap-1")[0];
+            image1.src = select.options[select.selectedIndex].value;
+
+            var image2 = document.getElementsByName("image-swap-4")[0];
+            image2.src = "img/website/" + select.options[select.selectedIndex].text + "/svg_dcgan_spelling-ravens-key.gif";
+
+            var noPromptSpan = document.getElementById('svg-no-prompt');
+            noPromptSpan.style.display = "";
+
+            function changeText(){
+                var instrNode = document.getElementById("see-pp-instruction");
+                var instrList = instructionDict[select.options[select.selectedIndex].text];
+                if (point < instrList.length ){
+                    while(instrNode.firstChild) {
+                        instrNode.removeChild(instrNode.firstChild);
+                    }
+                    instrNode.appendChild(document.createTextNode(instrList[point]));
+                    point++;
+                } 
+            }
+
+           var point = 0;
+           setInterval(changeText, 2000);
+           changeText();
+        }
+
+        function setImageSeePPOAblations(select){
+           var image1 = document.getElementsByName("image-swap-2")[0];
+           image1.src = select.options[select.selectedIndex].value;
+
+           var image2 = document.getElementsByName("image-swap-3")[0];
+           image2.src = "img/website/" + select.options[select.selectedIndex].text + "/cpcp_dcgan_spelling-ravens-one-hot-key.gif";
+
+           var highLevelPromptSpan = document.getElementById('high-level-prompt');
+           highLevelPromptSpan.style.display = "";
+
+           function changeText(){
+                var instrNode = document.getElementById("see-pp-one-hot-instruction");
+                var instrList = instructionDict[select.options[select.selectedIndex].text];
+
+                if (point < instrList.length ){
+                    while(instrNode.firstChild) {
+                        instrNode.removeChild(instrNode.firstChild);
+                    }
+                    instrNode.appendChild(document.createTextNode(instrList[point]));
+                    point++;
+                } 
+            }
+
+           var point = 0;
+           setInterval(changeText, 2000);
+           changeText();
+        }
+
+        function setImageSeePPKeyDense(){
+
+           function changeText(){
+                var instrNode = document.getElementById("see-pp-key-dense");
+                var instrList = instructionDict["TIDI"];
+
+                if (point < instrList.length ){
+                    while(instrNode.firstChild) {
+                        instrNode.removeChild(instrNode.firstChild);
+                    }
+                    instrNode.appendChild(document.createTextNode(instrList[point]));
+                    point++;
+                } 
+            }
+
+           var point = 0;
+           setInterval(changeText, 2000);
+           changeText();
+        }
+
+        window.onload = function() {
+            setImageSeePPKeyDense()
+        }
+
+    </script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="files/jumbotron.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        .navbar-custom {
+            background-color: #6e6ed3;
+        }
+        /* change the brand and text color */
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: rgba(255,255,255,.8);
+        }
+        /* change the link color */
+        .navbar-custom .navbar-nav .nav-link {
+            color: rgba(255,255,255,.5);
+        }
+        /* change the color of active or hovered links */
+        .navbar-custom .nav-item.active .nav-link,
+        .navbar-custom .nav-item:hover .nav-link {
+            color: #ffffff;
+        }
+
+        a:hover {
+            color: #000;
+        }
+
+        a::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        select {
+          /* for Firefox */
+          /*-moz-appearance: none;*/
+          /* for Chrome */
+          /*-webkit-appearance: none;*/
+        }
+        .dropselect {
+            background-repeat: repeat-x;
+            background-size: 1px 1px;
+            background-position: 0 85%;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            border-bottom:solid 1px #000;
+            width:auto;
+            font-weight: bolder;
+        }
+        .dropselect option {
+          color: initial; /* fix Windows bug */
+        }
+
+        .bibtexsection {
+            font-family: "Courier",monospace;
+            font-size: 16px;
+            white-space: pre;
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+    </style>
+    <title></title>
+
+</head>
+
+<title>See, Plan, Predict: Language-guided Cognitive Planning with Video Prediction</title>
+
+<body>
+<nav class="navbar navbar-custom navbar-expand-md navbar-dark fixed-top">
+    <a class="navbar-brand" href="#"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggle">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Abstract">Abstract</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Demo">Demo!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Model">Model</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Dataset">Dataset</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Results">Results</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#Contact">Contacts</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+
+<div class="container" style="padding-top: 80px; font-size: 20px">
+    <div align="center">
+        <h2 class="text-center" align="center">
+            <p>See, Plan, Predict: Language-guided Cognitive Planning with Video Prediction</p>
+        </h2>
+        <a href="https://anonymous.4open.science/r/see-pp-6EF7" target="_blank">[Code]</a>
+        <a href="">[Paper] (Coming soon!)</a>
+        <!-- <p style="color: #3ca01e"><b>CVPR 2022</b></p>
+        <p style="color: #3ca01e"><b>Anonymous review</b></p> -->
+        <!-- <a href=""></a><sup>1*</sup> &nbsp;
+        <a href=""></a><sup>2*</sup> &nbsp;
+        <a href=""></a><sup>2*</sup> &nbsp;
+        <a href=""></a><sup>2</sup> &nbsp;
+        <a href=""></a><sup>2</sup> -->
+        <!-- <br> -->
+        <!-- <a>(* indicate equal contribution)</a>
+        <br>
+        <a href=""><b></b></a>&nbsp;&nbsp;&nbsp;
+        <a href=""><b></b></a><br> -->
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+<!-- <div class="container">
+    <h3 id="home" style="padding-top: 80px; margin-top: -80px;"></h3>
+    <div class="row align-items-center">
+        <div class="col justify-content-center text-center">
+            <video width="85%" playsinline="" autoplay="" loop="" preload="" muted="">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <hr class="my-4">
+</div> -->
+<!-- <br> -->
+<!-- Abstract -->
+<div class="container">
+    <h3 id="Abstract" style="padding-top: 80px; margin-top: -80px;">Abstract</h3>
+    Cognitive planning is the structural decomposition of complex tasks into a sequence of future behaviors. 
+    In the computational setting, performing cognitive planning entails grounding plans and concepts in one or 
+    more modalities in order to leverage them for low level control. Since real-world tasks are often described in 
+    natural language, we devise a cognitive planning algorithm via language-guided video prediction. 
+    Current video prediction models do not support conditioning on natural language instructions. 
+    We, therefore, propose a new video prediction architecture which leverages the power of pre-trained transformers. 
+    The network is endowed with the ability to ground concepts based on natural language input with generalization to unseen objects. 
+    We demonstrate the effectiveness of this approach on a new simulation dataset, where each task is defined by a high-level action described in natural language. 
+    Our experiments compare our method against one video generation baseline without planning or action grounding and showcase significant improvements. 
+    Our ablation studies highlight the generalization power that natural language embeddings offer to concept grounding ability, as well as 
+    the importance of planning towards visual "imagination" of a task. 
+    Supplemental visual and other materials can be found at: <a href="https://see-pp.github.io/">see-pp.github.io</a>
+</div>
+<br><br>
+
+
+<!-- <h3 id="interactive_demo" style="padding-top: 80px; margin-top: -80px; text-align: center;">Interactive Demo</h3> -->
+<div class="container">
+    <hr class="my-4">
+    <h3 id="Demo" style="padding-top: 80px; margin-top: -80px;">Interactive Demo</h3>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="section">
+                <div class="section" style="text-align: center">
+                    <span><strong>Text Prompt: </strong></span>
+                    <span>Spell the word </span>
+                    <label for="see-pp-gen">
+                        <select id='see-pp-gen' class="dropselect" style="text-align: center" name="spelling_see-pp" onchange="setImageSeePP(this);">
+                            <option value="img/website/MATE/cpcp_dcgan_spelling-ravens-key.gif">MATE</option>
+                            <option value="img/website/TAME/cpcp_dcgan_spelling-ravens-key.gif" selected="">TAME</option>
+                            <option value="img/website/GATE/cpcp_dcgan_spelling-ravens-key.gif">GATE</option>
+                            <option value="img/website/GAME/cpcp_dcgan_spelling-ravens-key.gif">GAME</option>
+                            <option value="img/website/GATE/cpcp_dcgan_spelling-ravens-key.gif">GATE</option>
+                            <option value="img/website/TEAM/cpcp_dcgan_spelling-ravens-key.gif">TEAM</option>
+                            <option value="img/website/MEAT/cpcp_dcgan_spelling-ravens-key.gif">MEAT</option>
+                            <option value="img/website/META/cpcp_dcgan_spelling-ravens-key.gif">META</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="section" style="text-align: center">
+                <span><strong>See-PP </strong></span><br>
+                <span id="see-pp-instruction"></span>
+            </div>
+            <div class="row align-items-center">
+                <div class="col justify-content-center text-center">
+                    <img src="img/website_gt.png"
+                            class="img-fluid" alt="" style="width:80%; height:80%" name="image-swap-1">
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <br><br>
+            <img src="img/see-pp-svg-comp.png"
+            class="img-fluid" alt="" style="margin-left:10%;width:80%; height:80%">
+        </div>
+        <div class="col">
+            <div class="section" style="text-align: center; padding-bottom: 1.5%;">
+                <span><strong><a href="https://arxiv.org/abs/1802.07687">SVG [Denton et al. (2018)]</a></strong></span><br>
+                <span style="display: none;" id="svg-no-prompt">No Prompt</span>                    
+            </div>                 
+            <div class="row align-items-center">
+                <div class="col justify-content-center text-center">
+                    <img src="img/website_gt.png"
+                            class="img-fluid" alt="" style="width:80%; height:80%" name="image-swap-4">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class="container">
+    <hr class="my-4">
+    <h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Model Overview</h3>
+    <div class="row align-items-center">
+        <div class="col justify-content-center text-center">
+            <img src="img/architecture_diagram.png"
+                class="img-fluid" alt="" style="width:100%; height:100%" name="architecture-diagram">
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <hr class="my-4">
+    <h3 id="Ablations" >Ablations</h3>
+    <div class="section">
+        <p>
+            In order to assess the importance of the two submodules of our system, two ablation studies were performed. Results with absence of a planner indicate that 
+            often high level task descriptions do not contain enough information to perform the task and highlight the value of a planner breaking down a task into lower level 
+            actions. Substituting pre-trained natural language embeddings with one-hot encodings as the language representation of choice also demonstrates the power of
+            language embeddings pre-trained in tandem with visual embeddings, for concept learning.
+        </p>
+        <div class="row">
+            <div class="col">
+                <div class="section">
+                    <div class="section" style="text-align: center">
+                        <span><strong>Text Prompt: </strong></span>
+                        <span>Spell the word </span>
+                        <label for="see-pp-ablation">
+                            <select id='see-pp-ablation' class="dropselect" style="text-align: center" name="spelling_see-pp-no-plan" onchange="setImageSeePPOAblations(this);">
+                                <option value="img/website/MATE/smac_dcgan_spelling-ravens-high-level-key.gif">MATE</option>
+                                <option value="img/website/TAME/smac_dcgan_spelling-ravens-high-level-key.gif" selected="">TAME</option>
+                                <option value="img/website/GATE/smac_dcgan_spelling-ravens-high-level-key.gif">GATE</option>
+                                <option value="img/website/GAME/smac_dcgan_spelling-ravens-high-level-key.gif">GAME</option>
+                                <option value="img/website/GATE/smac_dcgan_spelling-ravens-high-level-key.gif">GATE</option>
+                                <option value="img/website/TEAM/smac_dcgan_spelling-ravens-high-level-key.gif">TEAM</option>
+                                <option value="img/website/MEAT/smac_dcgan_spelling-ravens-high-level-key.gif">MEAT</option>
+                                <option value="img/website/META/smac_dcgan_spelling-ravens-high-level-key.gif">META</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="row">
+            <div class="col">
+                <div class="section">
+                    <div class="section" style="text-align: center">
+                        <span><strong>See-PP without planner</strong></span><br>
+                        <span style="display: none;" id="high-level-prompt">High level prompt only</span>                    
+                    </div>
+                     <div class="row align-items-center">
+                        <div class="col justify-content-center text-center">
+                            <img src="img/website_gt.png"
+                                 class="img-fluid" alt="" style="width:80%; height:80%" name="image-swap-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="section">
+                    <div class="section" style="text-align: center">
+                        <span><strong>See-PP with one-hot encodings</strong></span><br>
+                        <span id="see-pp-one-hot-instruction"> </span>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col justify-content-center text-center">
+                            <img src="img/website_gt.png"
+                                 class="img-fluid" alt="" style="width:80%; height:80%" name="image-swap-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <hr class="my-4">
+    <h3 id="Dataset" style="padding-top: 80px; margin-top: -80px;">Dataset</h3>
+    <div class="section">
+        <p>
+         Our dataset was created based on <a href="https://github.com/google-research/ravens">Ravens</a> and can be found <a href="">here (link coming soon!)</a>.
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <img src="img/olaf_gt.gif"
+                    class="img-fluid" alt="" style="width:30%; height:30%" name="dataset-gif-1">
+                <img src="img/corf_gt.gif"
+                    class="img-fluid" alt="" style="width:30%; height:30%" name="dataset-gif-2">
+                <img src="img/fels_gt.gif"
+                    class="img-fluid" alt="" style="width:30%; height:30%" name="dataset-gif-3">
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <hr class="my-4">
+     <h3 id="Results" style="padding-top: 80px; margin-top: -80px;">Generalization Results</h3><br>
+    <div class="section">
+        <!-- <h4 class="text-center">Image Generation Results</h4> -->
+        <!-- <hr class="my-4"> -->
+        <p>
+            Generalization results on the <b>Spelling</b> dataset.
+            Language instructions are passed in along with the initial visual observation. Comparison between 3 models, See-PP trained on a random train/test split, 
+            See-PP trained on a seen/unseen train/test split where 4 letters <b>(F, Q, X, Z)</b> were kept unseen during training.
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <img src="img/see-pp-unseen.png" class="img-fluid" alt="" style="width:100%; height:100%">
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <hr class="my-4">
+     <h3 style="padding-top: 80px; margin-top: -80px;">Keyframe and Dense Prediction Results</h3><br>
+    <div class="section">
+        <!-- <h4 class="text-center">Image Generation Results</h4> -->
+        <!-- <hr class="my-4"> -->
+        <p>
+            Two modes of prediction. Dense prediction is longer horizon and aims to generate smoother transitions and more realistic videos. 
+            Keyframe prediction is shorter horizon and, while more fragmented, can yield better results that can be useful towards low level control 
+            in robotic settings, through Imitation Learning approaches.
+        </p>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="section">
+                    <div class="section" style="text-align: center">
+                        <span><strong>Text Prompt: </strong></span>
+                        <span>Spell the word <strong>TIDI</strong></span>
+                        <br>
+                        <span id="see-pp-key-dense"></span>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col justify-content-center text-center">
+                            <span style="padding:12%;"><strong>Keyframe</strong></span>
+                            <span style="padding:12%;"><strong>Dense</strong></span>
+                        </div>      
+                    </div>              
+                    <div class="row align-items-center">
+                        <div class="col justify-content-center text-center">
+                            <img src="img/website/TIDI/cpcp_dcgan_spelling-ravens-key.gif"
+                                class="img-fluid" alt="" style="width:30%; height:30%; padding:2%" name="keyframe-tidi">
+                            <img src="img/website/TIDI/cpcp_dcgan_spelling-ravens.gif"
+                                class="img-fluid" alt="" style="width:30%; height:30%; padding:2%" name="dense-tidi">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<!--            <div class="section">-->
+<!--                <h2>Paper</h2>-->
+<!--                <hr>-->
+<!--                <div>-->
+<!--                    <div class="list-group">-->
+<!--                        <a href="" class="list-group-item">-->
+<!--                            <img src="img/paper_thumbnail.png" style="width:100%; margin-right:-20px; margin-top:-10px;">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!-- <div class="container" id="bibtex">
+    <hr>
+    <h3>Bibtex</h3>
+    <div class="bibtexsection">
+        { Coming Soon! }
+    </div>
+</div>
+<br> -->
+
+<!-- <div class="container" id="Contact">
+    <hr class="my-4">
+    <footer>
+        <p>Send feedback and questions to any of
+            <a href=""></a>,
+            <a href=""></a>, and
+            <a href=""></a>.
+        </p>
+    </footer>
+</div> -->
+
+<!-- Bootstrap core JavaScript -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
